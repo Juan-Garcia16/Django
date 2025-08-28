@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as lg, authenticate
+from django.contrib import messages
 
 
 #El dicionario(CONTEXT)son las variables a utlizar en el html
@@ -25,7 +26,9 @@ def login(request):
         users = authenticate(request, username=username, password=password)
         if users:
             lg(request, users) #Login
+            messages.success(request, f"Login exitoso. Bienvendio {users.username}")
             return redirect(index)
+        else:
+            messages.error(request, "Usuario o contrasena incorrecta")
 
-        
     return render(request, 'users/login.html', {})

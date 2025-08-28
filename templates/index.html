@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container mt-4">
-        <h1>{{ mensaje }}</h1>
+        <h1 class="header">{{ mensaje }}</h1>
         <ul class="list-group">
         {% for j in personas %}
             <li class="list-group-item">
@@ -25,12 +25,18 @@
         </ul>
 
         <img src="{% static 'img/gato.webp' %}" alt="" class="img_gato">
+        
+        {% if messages %}
+            {% for m in messages %}
+                <div class="alert alert-success mt-2 header">
+                    {{ m }}
+                </div>
+            {% endfor %}
+        {% endif %}
     </div>
 
 
-
-
-
+    
 
 
     <!-- <ul class="list-group">
