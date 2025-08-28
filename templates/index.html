@@ -1,26 +1,32 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <title>{{ titulo }}</title>
 </head>
 <body>
-    <h1>{{ mensaje }}</h1>
-
-    <ul class="list-group">
+    <div class="container mt-4">
+        <h1>{{ mensaje }}</h1>
+        <ul class="list-group">
         {% for j in personas %}
             <li class="list-group-item">
                 {{j.titulo}}
                 {% if j.adulto %}
-                    <span class="text-success">Puede ingresar</span>
+                    <span class="text-success">En stock</span>
                 {%else%}
-                    <span class="text-danger">No puede ingresar</span>
+                    <span class="text-danger">Sin stock</span>
                 {% endif %}
             </li>
         {% endfor %}
-    </ul>
+        </ul>
+
+        <img src="{% static 'img/gato.webp' %}" alt="" class="img_gato">
+    </div>
+
 
 
 
@@ -60,4 +66,5 @@
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="{% static 'js/saludo.js' %}"></script>
 </html>
