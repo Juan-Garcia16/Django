@@ -13,3 +13,10 @@ def saludo(request):
             {'titulo':'Gorra', 'precio':10, 'adulto':True},
         ]
     })
+
+def login(request):
+    # if request.method == "POST":
+    #     username = request.POST.get("username")
+    #     password = request.POST.get("password")
+    #     # Aquí iría la lógica de autenticación
+    return render(request, 'users/login.html', {})
