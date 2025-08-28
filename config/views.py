@@ -15,8 +15,9 @@ def saludo(request):
     })
 
 def login(request):
-    # if request.method == "POST":
-    #     username = request.POST.get("username")
-    #     password = request.POST.get("password")
-    #     # Aquí iría la lógica de autenticación
+
+    if request.method == "POST":
+        username = request.POST.get("username") #El post es un diccionario, recibimos la clave
+        password = request.POST.get("password") 
+        print(f"Username: {username}, Password: {password}")
     return render(request, 'users/login.html', {})
