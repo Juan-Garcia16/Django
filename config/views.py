@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.contrib.auth import login as lg, authenticate
+from django.contrib.auth import login as lg, authenticate, logout
 from django.contrib import messages
 
 
@@ -32,3 +32,8 @@ def login(request):
             messages.error(request, "Usuario o contrasena incorrecta")
 
     return render(request, 'users/login.html', {})
+
+def salir(request):
+    logout(request)
+    messages.success(request, "Has cerrado sesión.")
+    return redirect(login)
