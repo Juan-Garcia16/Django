@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login as lg, authenticate, logout
 from django.contrib import messages
 from .forms import Regristo
+from django.contrib.auth.models import User
 
 
 #El dicionario(CONTEXT)son las variables a utlizar en el html
@@ -46,7 +47,14 @@ def registro(request):
         username = form.cleaned_data.get("username") #diccionario
         email = form.cleaned_data.get("email")
         password = form.cleaned_data.get("password")
-        print(username, email, password)
+        #print(username, email, password)
+        
+        usuario = User.objects.create_user(username, email, password) #crea el usuario
+        if usuario:
+            lg(request, usuario) #Login del nuevo usuario
+            messages.success(request, f"Usuario creado exitosamente, bienvenido {usuario.username}")
+            return redirect(index)
+        
     return render(request, 'users/registro.html', {
         'form': form #es lo que se está mostrando en el HTML
     })
