@@ -23,5 +23,21 @@ class Regristo(forms.Form):
         
         if User.objects.filter(username=username).exists():
             raise forms.ValidationError('El usuario ya existe')
-        
+
         return username
+    
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError('El correo ya está registrado')
+        
+        return email
+        
+    def clean_password(self):
+        password = self.cleaned_data.get('password')
+
+        if User.objects.filter(password=password).exists():
+            raise forms.ValidationError("La contraseña ya existe")
+        
+        return password
