@@ -15,7 +15,7 @@
                 
                 <form method="POST">
                     {% csrf_token %}
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         {{ form.username.label_tag}}
                         {{ form.username }}
                     </div>
@@ -28,8 +28,23 @@
                     <div class="mb-3">
                         {{ form.password.label_tag }}
                         {{ form.password }}
-                    </div>
+                    </div> -->
+
+                    <!-- Forma simplificada -->
+                    {% for m in form %}
+                        <div class="mb-3">
+                            {{ m.label_tag }}
+                            {{ m }}
+
+                            {% if m.errors %}  <!-- Si se repite un campo en la-->
+                                {{ m.errors }}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+
+
                     <button type="submit" class="btn btn-primary w-100">Create account</button>
+
                 </form>
             </div>
         </div>
