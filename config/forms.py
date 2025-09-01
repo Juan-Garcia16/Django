@@ -21,7 +21,7 @@ class Regristo(forms.Form):
         'placeholder': 'Confirm Password'
     }))
     
-
+    #Validar nombre de usuario existente
     def clean_username(self):
         username = self.cleaned_data.get('username')
         
@@ -29,7 +29,8 @@ class Regristo(forms.Form):
             raise forms.ValidationError('El usuario ya existe')
 
         return username
-    
+
+    # Validar correo electrónico existente
     def clean_email(self):
         email = self.cleaned_data.get('email')
 
@@ -38,8 +39,17 @@ class Regristo(forms.Form):
         
         return email
 
+    # Validar contraseñas
     def clean(self):
         cleaned_data = super().clean()
         
         if cleaned_data.get('password_confirmed') != cleaned_data.get('password'):
             self.add_error('password_confirmed', 'Las contraseñas no coinciden')
+
+    # Guardar usuario por parte de django
+    def save(self):
+        return User.objects.create_user(
+            self.cleaned_data.get('username'),
+            self.cleaned_data.get('email'),
+            self.cleaned_data.get('password')
+        )

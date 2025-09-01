@@ -44,12 +44,8 @@ def registro(request):
     #OBTENCION DE DATOS
     form = Regristo(request.POST or None) #aqui se almacenara el formulario si se hace la peticion
     if request.method == "POST" and form.is_valid(): #Si es post, es que enviaron el formulario
-        username = form.cleaned_data.get("username") #diccionario
-        email = form.cleaned_data.get("email")
-        password = form.cleaned_data.get("password")
-        #print(username, email, password)
         
-        usuario = User.objects.create_user(username, email, password) #crea el usuario
+        usuario = form.save() #Guardamos el usuario
         if usuario:
             lg(request, usuario) #Login del nuevo usuario
             messages.success(request, f"Usuario creado exitosamente, bienvenido {usuario.username}")
