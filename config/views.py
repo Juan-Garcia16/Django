@@ -47,9 +47,16 @@ def registro(request):
         
         usuario = form.save() #Guardamos el usuario
         if usuario:
-            lg(request, usuario) #Login del nuevo usuario
-            messages.success(request, f"Usuario creado exitosamente, bienvenido {usuario.username}")
-            return redirect(index)
+            # Autenticar primero para que Django asigne el backend correcto
+            usuario_autenticado = authenticate(
+                request, 
+                username=usuario.username, 
+                password=form.cleaned_data['password']
+            )
+            if usuario_autenticado:
+                lg(request, usuario_autenticado) #Login del nuevo usuario
+                messages.success(request, f"Usuario creado exitosamente, bienvenido {usuario.username}")
+                return redirect(index)
         
     return render(request, 'users/registro.html', {
         'form': form #es lo que se está mostrando en el HTML
