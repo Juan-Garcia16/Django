@@ -8,19 +8,8 @@
 </head>
 <body>
     <div class="container mt-4"> <!--Ya no hace falta que vaya en los otros archivos-->
-        {% if messages %}
-            {% for m in messages %}
-                {% if m.tags == 'success' %}
-                    <div class="alert alert-success mt-2 header">
-                        {{ m }}
-                    </div>
-                {% else %}
-                    <div class="alert alert-danger mt-2 header">
-                        {{ m }}
-                    </div>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
+        {% include 'messages.html' %} <!--include funciona como un import pero en templates html-->
+
         <div class="row">
             {% block content %}
             {% endblock %}
