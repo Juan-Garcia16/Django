@@ -28,7 +28,7 @@ def login(request):
         users = authenticate(request, username=username, password=password)
         if users:
             lg(request, users) #Login
-            messages.success(request, f"Login exitoso. Bienvendio {users.username}")
+            messages.success(request, f"Login exitoso. Bienvenido {users.username}")
             return redirect(index)
         else:
             messages.error(request, "Usuario o contrasena incorrecta")

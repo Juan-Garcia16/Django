@@ -1,76 +1,18 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <title>{{ titulo }}</title>
-</head>
-<body>
-    <div class="container mt-4">
-        <h1 class="header">{{ mensaje }}</h1>
-        <ul class="list-group">
-        {% for j in personas %}
-            <li class="list-group-item">
-                {{j.titulo}}
-                {% if j.adulto %}
-                    <span class="text-success">En stock</span>
-                {%else%}
-                    <span class="text-danger">Sin stock</span>
-                {% endif %}
-            </li>
-        {% endfor %}
-        </ul>
+{% extends 'base.html' %}
+{% block content%}
 
-        <img src="{% static 'img/gato.webp' %}" alt="" class="img_gato">
-        
-        {% if messages %}
-            {% for m in messages %}
-                <div class="alert alert-success mt-2 header">
-                    {{ m }}
-                </div>
-            {% endfor %}
+<h1 class="header">{{ mensaje }}</h1>
+<ul class="list-group">
+{% for j in personas %}
+    <li class="list-group-item">
+        {{j.titulo}}
+        {% if j.adulto %}
+            <span class="text-success">En stock</span>
+        {%else%}
+            <span class="text-danger">Sin stock</span>
         {% endif %}
-    </div>
+    </li>
+{% endfor %}
+</ul>
 
-
-    
-
-
-    <!-- <ul class="list-group">
-        {% for i in personas %}
-            <li class="list-group-item">{{ i.titulo }} - {{ i.edad }} - {{ i.adulto }}</li>
-        {% endfor %}
-    </ul>
-
-    <h1>Mayores de edad</h1>
-    <ul class="list-group">
-        {% for i in personas %}
-            {% if i.adulto %}
-                <li class="list-group-item">
-                    {{ i.titulo }} - {{ i.edad }} - {{ i.adulto }}
-                </li>
-            {% endif %}
-        {% endfor %}
-    </ul>
-
-    <h1>Impresion mejorada</h1>
-    <u class="list-group">
-        {% for j in personas %}
-            <li class="list-group-item">{{j.titulo}}
-                {% if j.adulto %}
-                <span>Puede ingresar</span>
-                {% endif %}
-            </li>
-            
-        {% endfor %}
-    </u> -->
-    
-
-
-</body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-<script src="{% static 'js/saludo.js' %}"></script>
-</html>
+{% endblock %}
