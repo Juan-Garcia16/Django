@@ -17,14 +17,6 @@
                     <input type="password" class="form-control" id="password" name="password" required>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Login</button>
-                
-                {% if messages %}
-                    {% for m in messages %}
-                        <div class="alert alert-danger mt-3">
-                            {{ m }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
             </form>
 
             <a href="{% url 'social:begin' 'facebook' %}">Continuar con facebook</a>
