@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as lg, authenticate, logout
 from django.contrib import messages
+from .forms import Regristo
 
 
 #El dicionario(CONTEXT)son las variables a utlizar en el html
@@ -37,3 +38,9 @@ def salir(request):
     logout(request)
     messages.success(request, "Has cerrado sesión.")
     return redirect(login)
+
+def registro(request):
+    form = Regristo() #aqui se almacenara el formulario
+    return render(request, 'users/registro.html', {
+        'form': form #es lo que se está mostrando en el HTML
+    })
