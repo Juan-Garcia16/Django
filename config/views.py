@@ -4,19 +4,16 @@ from django.contrib.auth import login as lg, authenticate, logout
 from django.contrib import messages
 from .forms import Regristo
 from django.contrib.auth.models import User
+from products.models import Product
 
 
 #El dicionario(CONTEXT)son las variables a utlizar en el html
 def index(request):
+    productos = Product.objects.all()  # Query para obtener todos los productos
     return render(request, 'index.html', {
         "titulo": "Inicio",
         "mensaje": "Tienda",
-        "personas": [
-            {'titulo':'Campera', 'precio':15, 'adulto':False},
-            {'titulo':'Pantalon', 'precio':11, 'adulto':True},
-            {'titulo':'Remera', 'precio':18, 'adulto':False},
-            {'titulo':'Gorra', 'precio':10, 'adulto':True},
-        ]
+        "productos": productos
     })
 
 def login(request):

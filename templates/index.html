@@ -3,14 +3,10 @@
 
 <h1 class="header">{{ mensaje }}</h1>
 <ul class="list-group">
-{% for j in personas %}
+{% for j in productos %}
     <li class="list-group-item">
-        {{j.titulo}}
-        {% if j.adulto %}
-            <span class="text-success">En stock</span>
-        {%else%}
-            <span class="text-danger">Sin stock</span>
-        {% endif %}
+        {{j.title}}
+            <span class="text-success">{{j.price}}</span>
     </li>
 {% endfor %}
 </ul>
