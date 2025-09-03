@@ -9,6 +9,7 @@ from products.models import Product
 
 #El dicionario(CONTEXT)son las variables a utlizar en el html
 def index(request):
+    #Debido a la vista por lista, esta seccion queda practicamenre desvicunlada en caunto a su funcionalidad
     productos = Product.objects.all()  # Query para obtener todos los productos
     return render(request, 'index.html', {
         "titulo": "Inicio",

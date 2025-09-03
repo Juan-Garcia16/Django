@@ -3,7 +3,8 @@
 
 <h1 class="header">{{ mensaje }}</h1>
 <ul class="list-group">
-{% for j in productos %}
+<!-- object_list es la lista de productos -->
+{% for j in object_list %} 
     <li class="list-group-item">
         {{j.title}}
             <span class="text-success">{{j.price}}</span>
