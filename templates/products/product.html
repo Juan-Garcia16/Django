@@ -3,8 +3,10 @@
 
 <div class="col">
     <h2>{{mensaje}}</h2>
-    <h3 class="header">{{ object.title }}</h3>
-    <p class="text-muted">{{ object.description }}</p>
-    <p class="text-success">{{ object.price }}</p>
+    <div class="h1">{{ product.title }}</div>
+    <div class="h5 font-weight-bold">
+        Precio: $<span class="text-success">{{ product.price }}</span>
+    </div>
+    <p>{{ product.description }}</p>
 </div>
 {% endblock %}
