@@ -26,4 +26,5 @@ urlpatterns = [
     path('usuarios/registro', views.registro, name='registro'),
     path('admin/', admin.site.urls),
     path('social-auth/', include('social_django.urls', namespace="social")),
+    path('productos/', include('products.urls'))
 ]
