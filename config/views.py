@@ -20,6 +20,8 @@ def index(request):
     })
 
 def login(request):
+    if request.user.is_authenticated:
+        return redirect(index)
 
     if request.method == "POST": #Si es post, es que enviaron el formulario
         username = request.POST.get("username") #El post es un diccionario, recibimos la clave
@@ -41,6 +43,9 @@ def salir(request):
     return redirect(login)
 
 def registro(request):
+    if request.user.is_authenticated:
+        return redirect(index)
+    
     #OBTENCION DE DATOS
     form = Regristo(request.POST or None) #aqui se almacenara el formulario si se hace la peticion
     if request.method == "POST" and form.is_valid(): #Si es post, es que enviaron el formulario
